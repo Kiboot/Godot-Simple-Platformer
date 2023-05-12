@@ -1,28 +1,29 @@
 using Godot;
 using System;
 
+
 public partial class Player : CharacterBody2D
 {
-	double moveSpeed = 100;
-	double jumpForce = 200;
-	double gravity = 500;
-	
+	float moveSpeed = 100f;
+	float jumpForce = 200f;
+	float gravity = 500f;
+	Vector2 velocity;
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-		if (!IsOnFloor())
-		{
-			velocity.Y += (float)(gravity * delta);
-		}
-
 		velocity.X = 0;
-
-		if(Input.IsKeyPressed(Key.Left)){
-			velocity.X -= (float)moveSpeed;
+		
+		if (!IsOnFloor()) 
+		{
+			velocity.Y += gravity * (float)delta;
 		}
-		if(Input.IsKeyPressed(Key.Right)){
-			velocity.X = (float)moveSpeed;
-		}
+		if(Input.IsActionPressed("Left") ){velocity.X -= moveSpeed;}
+		if(Input.IsActionPressed("Right") ){velocity.X = moveSpeed;}
+		//important as velocity was first invoked as an object
+		
+		if(Input.IsActionJustPressed("Jump") && IsOnFloor()){velocity.Y = -jumpForce;}
+		
+		Velocity = velocity;
+		MoveAndSlide();
 		
 	}
 }

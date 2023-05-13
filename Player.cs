@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
 	float moveSpeed = 100f;
 	float jumpForce = 200f;
 	float gravity = 500f;
+	int score = 0;
 	Vector2 velocity;
 	public override void _PhysicsProcess(double delta)
 	{

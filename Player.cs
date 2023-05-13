@@ -12,18 +12,20 @@ public partial class Player : CharacterBody2D
 	{
 		velocity.X = 0;
 		
-		if (!IsOnFloor()) 
-		{
-			velocity.Y += gravity * (float)delta;
-		}
+		if (!IsOnFloor()){velocity.Y += gravity * (float)delta;}
 		if(Input.IsActionPressed("Left") ){velocity.X -= moveSpeed;}
 		if(Input.IsActionPressed("Right") ){velocity.X = moveSpeed;}
 		//important as velocity was first invoked as an object
-		
 		if(Input.IsActionJustPressed("Jump") && IsOnFloor()){velocity.Y = -jumpForce;}
 		
 		Velocity = velocity;
 		MoveAndSlide();
-		
+
+		if(GlobalPosition.Y > 60){
+			_GameOver();
+		}
+	}
+	public void _GameOver(){
+		GetTree().ReloadCurrentScene();
 	}
 }

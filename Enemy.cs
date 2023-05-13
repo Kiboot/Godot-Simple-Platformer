@@ -27,11 +27,15 @@ public partial class Enemy : Area2D
 			}
 		}
 	}
-	private void _On_Body_Entered(Node2D body)
+	//changed from the default _On_Body_Entered as it is causing function call error
+	private void _on_body_entered(Node2D body)
 	{
+		
 		if (body.IsInGroup("Player"))
 		{
-			body.Call("_GameOver()");
+			//body.game_over()
+			((Player)body)._GameOver();
+
 		}
 	}
 

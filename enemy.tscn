@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://255pl5f7pjd3"]
+
+[ext_resource type="Script" path="res://Enemy.cs" id="1_1yiff"]
+[ext_resource type="Texture2D" uid="uid://dgqk5lpguspjb" path="res://Sprites/Objects/deadlE.png" id="2_mwn5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tfh"]
+size = Vector2(18, 18)
+
+[node name="Enemy" type="Area2D"]
+position = Vector2(25, -36)
+script = ExtResource("1_1yiff")
+moveDirection = Vector2(0, -50)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_mwn5i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g4tfh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

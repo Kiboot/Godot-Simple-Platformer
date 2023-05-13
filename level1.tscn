@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbu5t2ifccoui"]
+[gd_scene load_steps=8 format=3 uid="uid://bbu5t2ifccoui"]
 
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://Sprites/Tiles/tiles_packed.png" id="1_o54ec"]
 [ext_resource type="Script" path="res://Player.cs" id="2_mpeyc"]
 [ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://Sprites/Characters/character_0000.png" id="3_mm7c0"]
-[ext_resource type="Script" path="res://Enemy.cs" id="4_reol7"]
-[ext_resource type="Texture2D" uid="uid://dgqk5lpguspjb" path="res://Sprites/Objects/deadlE.png" id="5_togxm"]
+[ext_resource type="PackedScene" uid="uid://255pl5f7pjd3" path="res://enemy.tscn" id="4_hwppe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oae1e"]
 texture = ExtResource("1_o54ec")
@@ -699,9 +698,6 @@ sources/0 = SubResource("TileSetAtlasSource_oae1e")
 radius = 8.0
 height = 24.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4tfh"]
-size = Vector2(18, 18)
-
 [node name="Root" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -722,15 +718,16 @@ shape = SubResource("CapsuleShape2D_7pcf7")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
 
-[node name="Enemy" type="Area2D" parent="."]
-position = Vector2(25, -36)
-script = ExtResource("4_reol7")
-moveDirection = Vector2(0, -50)
+[node name="Enemy" parent="." instance=ExtResource("4_hwppe")]
 
-[node name="Sprite" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("5_togxm")
+[node name="Enemy2" parent="." instance=ExtResource("4_hwppe")]
+position = Vector2(153, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("RectangleShape2D_g4tfh")
+[node name="Enemy3" parent="." instance=ExtResource("4_hwppe")]
+position = Vector2(207, -9)
 
-[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]
+[node name="Enemy4" parent="." instance=ExtResource("4_hwppe")]
+position = Vector2(603, -44)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_hwppe")]
+position = Vector2(658, -44)

@@ -4,7 +4,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	float moveSpeed = 100f;
+	float moveSpeed = 125f;
 	float jumpForce = 200f;
 	float gravity = 500f;
 	int score = 0;

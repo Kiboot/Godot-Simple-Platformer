@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbu5t2ifccoui"]
+[gd_scene load_steps=14 format=3 uid="uid://bbu5t2ifccoui"]
 
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://Sprites/Tiles/tiles_packed.png" id="1_o54ec"]
 [ext_resource type="Script" path="res://Player.cs" id="2_mpeyc"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://255pl5f7pjd3" path="res://enemy.tscn" id="4_hwppe"]
 [ext_resource type="PackedScene" uid="uid://bqkft0fg0wcth" path="res://spikes.tscn" id="5_v2hwp"]
 [ext_resource type="PackedScene" uid="uid://21grebtofetk" path="res://coin.tscn" id="6_gv0r5"]
-[ext_resource type="Script" path="res://Coin.cs" id="7_p0bke"]
+[ext_resource type="Script" path="res://EndFlag.cs" id="8_51opr"]
+[ext_resource type="Texture2D" uid="uid://cop47aoytyxtb" path="res://Sprites/Objects/tile_0112.png" id="9_2a5lp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oae1e"]
 texture = ExtResource("1_o54ec")
@@ -701,6 +702,14 @@ sources/0 = SubResource("TileSetAtlasSource_oae1e")
 radius = 8.0
 height = 24.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_ehit2"]
+line_spacing = 48.0
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_267nf"]
+size = Vector2(18, 18)
+
 [node name="Root" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -721,6 +730,15 @@ shape = SubResource("CapsuleShape2D_7pcf7")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="ScoreText" type="Label" parent="Player/CanvasLayer"]
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 27.0
+text = " Score: 0"
+label_settings = SubResource("LabelSettings_ehit2")
 
 [node name="Enemy" parent="." instance=ExtResource("4_hwppe")]
 
@@ -764,6 +782,17 @@ position = Vector2(254, -26)
 position = Vector2(279, -45)
 
 [node name="Coin" parent="." instance=ExtResource("6_gv0r5")]
-script = ExtResource("7_p0bke")
+position = Vector2(90, -31)
 
-[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
+[node name="EndFlag" type="Area2D" parent="."]
+position = Vector2(768, -81)
+script = ExtResource("8_51opr")
+NextScene = "res://level2.tscn"
+
+[node name="Sprite" type="Sprite2D" parent="EndFlag"]
+texture = ExtResource("9_2a5lp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag"]
+shape = SubResource("RectangleShape2D_267nf")
+
+[connection signal="body_entered" from="EndFlag" to="EndFlag" method="_on_body_entered"]

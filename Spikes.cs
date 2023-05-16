@@ -10,7 +10,6 @@ public partial class Spikes : Area2D
 		{
 			//body.game_over()
 			((Player)body)._GameOver();
-
 		}
 	}
 }

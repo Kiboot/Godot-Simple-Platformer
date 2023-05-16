@@ -4,11 +4,18 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	float moveSpeed = 125f;
+	float moveSpeed = 100f;
 	float jumpForce = 200f;
 	float gravity = 500f;
 	int score = 0;
 	Vector2 velocity;
+	Label ScoreTxt;
+	public override void _Ready()
+	{
+		Label ScoreText = GetNode<Label>("/root/Root/Player/CanvasLayer/ScoreText");
+		ScoreTxt = ScoreText;
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		velocity.X = 0;
@@ -31,5 +38,6 @@ public partial class Player : CharacterBody2D
 	}
 	public void _AddScore(int amount){
 		score += amount;
+		ScoreTxt.Text = ("Score: " + score);
 	}
 }

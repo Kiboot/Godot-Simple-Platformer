@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbu5t2ifccoui"]
+[gd_scene load_steps=11 format=3 uid="uid://bbu5t2ifccoui"]
 
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://Sprites/Tiles/tiles_packed.png" id="1_o54ec"]
 [ext_resource type="Script" path="res://Player.cs" id="2_mpeyc"]
 [ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://Sprites/Characters/character_0000.png" id="3_mm7c0"]
 [ext_resource type="PackedScene" uid="uid://255pl5f7pjd3" path="res://enemy.tscn" id="4_hwppe"]
 [ext_resource type="PackedScene" uid="uid://bqkft0fg0wcth" path="res://spikes.tscn" id="5_v2hwp"]
+[ext_resource type="PackedScene" uid="uid://21grebtofetk" path="res://coin.tscn" id="6_gv0r5"]
+[ext_resource type="Script" path="res://Coin.cs" id="7_p0bke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oae1e"]
 texture = ExtResource("1_o54ec")
@@ -760,3 +762,8 @@ position = Vector2(254, -26)
 
 [node name="Spikes6" parent="." instance=ExtResource("5_v2hwp")]
 position = Vector2(279, -45)
+
+[node name="Coin" parent="." instance=ExtResource("6_gv0r5")]
+script = ExtResource("7_p0bke")
+
+[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]

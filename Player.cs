@@ -29,7 +29,7 @@ public partial class Player : CharacterBody2D
 	public void _GameOver(){
 		GetTree().ReloadCurrentScene();
 	}
-	public void _AddScore(){
-		
+	public void _AddScore(int amount){
+		score += amount;
 	}
 }
